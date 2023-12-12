@@ -65,6 +65,14 @@ Query OK, 1 row affected (0.00 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
 
 
+--UC7
+mysql> select sum(salary), avg(salary), min(salary), max(salary), count(*) from employee_payroll group by gender;
++-------------+-------------+-------------+-------------+----------+
+| sum(salary) | avg(salary) | min(salary) | max(salary) | count(*) |
++-------------+-------------+-------------+-------------+----------+
+|       10000 |  10000.0000 |       10000 |       10000 |        1 |
++-------------+-------------+-------------+-------------+----------+
+1 row in set (0.01 sec)
 
 
 
