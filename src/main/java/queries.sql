@@ -34,6 +34,29 @@ mysql> select * from employee_payroll;
 +----+-------------------+--------+------------+
 1 row in set (0.01 sec)
 
+--UC5
+mysql> select salary from employee_payroll where name = 'Vaisakhkrishnan K';
++--------+
+| salary |
++--------+
+|  10000 |
++--------+
+
+mysql> select salary from employee_payroll where name = 'Vaisakh';
+Empty set (0.00 sec)
+
+ select salary from employee_payroll where name = 'Vaisakhkrishnan K' and startDate BETWEEN CAST('2018-01-01' as date) and CAST('2024-12-30' as date);
++--------+
+| salary |
++--------+
+|  10000 |
++--------+
+
+
+
+
+
+
 
 
 
