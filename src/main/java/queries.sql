@@ -54,6 +54,15 @@ Empty set (0.00 sec)
 
 
 
+--UC6
+mysql> alter table employee_payroll add gender char(1);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+mysql> update employee_payroll set gender = 'M';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
 
 
 
