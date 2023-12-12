@@ -111,6 +111,24 @@ mysql> describe employee_payroll;
 +------------+-------------+------+-----+-----------------+-------+
 13 rows in set (0.01 sec)
 
+--UC10
+mysql> insert into employee_payroll values (2, 'Terissa', 10000, '2020-10-10', 'F', '1234567890', 'Address','Sales', 7000, 200, 1000, 200, 9000);
+Query OK, 1 row affected (0.01 sec)
+mysql> insert into employee_payroll values (3, 'Terissa', 10000, '2020-10-10', 'F', '1234567890', 'Address','Marketing', 7000, 200, 1000, 200, 9000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee_payroll;
++----+-------------------+--------+------------+--------+------------+-----------------+------------+----------+------------+------------+-----------+--------+
+| id | name              | salary | startDate  | gender | phone      | address         | department | basicPay | deductions | taxablePay | incomeTax | netPay |
++----+-------------------+--------+------------+--------+------------+-----------------+------------+----------+------------+------------+-----------+--------+
+|  1 | Vaisakhkrishnan K |  10000 | 2024-01-08 | M      | NULL       | DEFAULT ADDRESS |            |     NULL |       NULL |       NULL |      NULL |   NULL |
+|  2 | Terissa           |  10000 | 2020-10-10 | F      | 1234567890 | Address         | Sales      |     7000 |        200 |       1000 |       200 |   9000 |
+|  3 | Terissa           |  10000 | 2020-10-10 | F      | 1234567890 | Address         | Marketing  |     7000 |        200 |       1000 |       200 |   9000 |
++----+-------------------+--------+------------+--------+------------+-----------------+------------+----------+------------+------------+-----------+--------+
+3 rows in set (0.01 sec)
+
+
+
 
 
 
