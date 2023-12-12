@@ -75,6 +75,15 @@ mysql> select sum(salary), avg(salary), min(salary), max(salary), count(*) from 
 1 row in set (0.01 sec)
 
 
+--UC8
+mysql> alter table employee_payroll
+    -> add phone varchar(10),
+    -> add address varchar(25) default "DEFAULT ADDRESS",
+    -> add department varchar(25) not null;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
 
 
 
