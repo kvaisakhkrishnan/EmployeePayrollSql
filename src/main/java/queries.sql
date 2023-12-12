@@ -25,6 +25,15 @@ Query OK, 0 rows affected (0.02 sec)
 mysql> insert into employee_payroll values (1, 'Vaisakhkrishnan K', 10000, '2024-01-08');
 Query OK, 1 row affected (0.02 sec)
 
+--UC4
+mysql> select * from employee_payroll;
++----+-------------------+--------+------------+
+| id | name              | salary | startDate  |
++----+-------------------+--------+------------+
+|  1 | Vaisakhkrishnan K |  10000 | 2024-01-08 |
++----+-------------------+--------+------------+
+1 row in set (0.01 sec)
+
 
 
 
