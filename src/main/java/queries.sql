@@ -83,6 +83,37 @@ mysql> alter table employee_payroll
 Query OK, 0 rows affected (0.01 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
+--UC9
+ alter table employee_payroll
+    -> add basicPay int,
+    -> add deductions int,
+    -> add taxablePay int,
+    -> add incomeTax int,
+    -> add netPay int;
+
+mysql> describe employee_payroll;
++------------+-------------+------+-----+-----------------+-------+
+| Field      | Type        | Null | Key | Default         | Extra |
++------------+-------------+------+-----+-----------------+-------+
+| id         | int         | NO   | PRI | NULL            |       |
+| name       | varchar(25) | YES  |     | NULL            |       |
+| salary     | int         | YES  |     | NULL            |       |
+| startDate  | date        | YES  |     | NULL            |       |
+| gender     | char(1)     | YES  |     | NULL            |       |
+| phone      | varchar(10) | YES  |     | NULL            |       |
+| address    | varchar(25) | YES  |     | DEFAULT ADDRESS |       |
+| department | varchar(25) | NO   |     | NULL            |       |
+| basicPay   | int         | YES  |     | NULL            |       |
+| deductions | int         | YES  |     | NULL            |       |
+| taxablePay | int         | YES  |     | NULL            |       |
+| incomeTax  | int         | YES  |     | NULL            |       |
+| netPay     | int         | YES  |     | NULL            |       |
++------------+-------------+------+-----+-----------------+-------+
+13 rows in set (0.01 sec)
+
+
+
+
 
 
 
