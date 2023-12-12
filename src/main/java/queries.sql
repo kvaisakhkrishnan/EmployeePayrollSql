@@ -21,6 +21,12 @@ Database changed
 mysql> create table employee_payroll (id int primary key, name varchar(25), salary int, startDate date);
 Query OK, 0 rows affected (0.02 sec)
 
+--UC3
+mysql> insert into employee_payroll values (1, 'Vaisakhkrishnan K', 10000, '2024-01-08');
+Query OK, 1 row affected (0.02 sec)
+
+
+
 
 
 
