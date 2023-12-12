@@ -17,5 +17,11 @@ mysql> show databases;
 mysql> use payroll_service;
 Database changed
 
+--UC2
+mysql> create table employee_payroll (id int primary key, name varchar(25), salary int, startDate date);
+Query OK, 0 rows affected (0.02 sec)
+
+
+
 
 
