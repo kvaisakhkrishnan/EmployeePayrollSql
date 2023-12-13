@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.util.Scanner;
 
 public class Driver {
     public static void main(String[] args){
@@ -7,6 +8,7 @@ public class Driver {
             updateSalary();
             System.out.println("After Update");
             getUserData();
+            payrollByName();
         }
         catch(SQLException err){
             err.printStackTrace();
@@ -35,4 +37,19 @@ public class Driver {
         statement.setInt(1, 3000000);
         statement.executeUpdate();
     }
+
+    public static void payrollByName() throws SQLException{
+        System.out.println("Enter Name: ");
+        Scanner scanner = new Scanner(System.in);
+        String name = scanner.next();
+        JDBC jdbc = new JDBC();
+        jdbc.getConnection();
+        PreparedStatement statement = jdbc.connection.prepareStatement("select salary as payroll, name from employee_payroll where name = ?");
+        statement.setString(1, name);
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()){
+            System.out.println("Name: [" + resultSet.getString("name") + "], Payroll: [" + resultSet.getString("payroll") + "]");
+        }
+    }
+
 }
