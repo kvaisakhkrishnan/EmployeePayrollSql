@@ -12,7 +12,7 @@ public class JDBC {
         this.user = "root";
         this.password = "password";
     }
-    Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(this.url, this.user, this.password);
+    void getConnection() throws SQLException {
+        this.connection = DriverManager.getConnection(this.url, this.user, this.password);
     }
 }
