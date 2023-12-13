@@ -9,6 +9,7 @@ public class Driver {
             System.out.println("After Update");
             getUserData();
             payrollByName();
+            getDataByDate();
         }
         catch(SQLException err){
             err.printStackTrace();
@@ -49,6 +50,23 @@ public class Driver {
         ResultSet resultSet = statement.executeQuery();
         while (resultSet.next()){
             System.out.println("Name: [" + resultSet.getString("name") + "], Payroll: [" + resultSet.getString("payroll") + "]");
+        }
+    }
+
+    public static void getDataByDate() throws SQLException {
+        System.out.println("Enter Starting Date: ");
+        Scanner scanner = new Scanner(System.in);
+        String start = scanner.next();
+        System.out.println("Enter Ending Date: ");
+        String end = scanner.next();
+        JDBC jdbc = new JDBC();
+        jdbc.getConnection();
+        PreparedStatement statement = jdbc.connection.prepareStatement("select * from employee_payroll where startDate > ? and startDate <= ?");
+        statement.setString(1, start);
+        statement.setString(2, end);
+        ResultSet result = statement.executeQuery();
+        while (result.next()){
+            System.out.println("Employee Id: " + result.getString("id") + ", Name: " + result.getString("name"));
         }
     }
 
