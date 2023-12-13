@@ -4,6 +4,9 @@ public class Driver {
     public static void main(String[] args){
         try{
             getUserData();
+            updateSalary();
+            System.out.println("After Update");
+            getUserData();
         }
         catch(SQLException err){
             err.printStackTrace();
@@ -23,5 +26,13 @@ public class Driver {
             System.out.println("=============================");
         }
 
+    }
+
+    public static void updateSalary() throws SQLException {
+        JDBC jdbc = new JDBC();
+        jdbc.getConnection();
+        PreparedStatement statement = jdbc.connection.prepareStatement("update employee_payroll set salary = ? where id = 2 or id = 3;");
+        statement.setInt(1, 3000000);
+        statement.executeUpdate();
     }
 }
