@@ -5,13 +5,17 @@ import java.util.Stack;
 public class Driver {
     public static void main(String[] args){
         try{
-            getUserData();
-            updateSalary();
-            System.out.println("After Update");
-            getUserData();
+            //getUserData();
+            //updateSalary();
+            //System.out.println("After Update");
+            //getUserData();
             //payrollByName();
             //getDataByDate();
-            analysis();
+            //analysis();
+            //addUserData();
+            //getUserData();
+            deleteUserData();
+            getUserData();
         }
         catch(SQLException err){
             err.printStackTrace();
@@ -36,7 +40,7 @@ public class Driver {
     public static void updateSalary() throws SQLException {
         JDBC jdbc = new JDBC();
         jdbc.getConnection();
-        PreparedStatement statement = jdbc.connection.prepareStatement("update employee_payroll set salary = ? where id = 2 or id = 3;");
+        PreparedStatement statement = jdbc.connection.prepareStatement("update payroll_detail set salary = ? where id = 2 or id = 3;");
         statement.setInt(1, 3000000);
         statement.executeUpdate();
     }
@@ -81,5 +85,80 @@ public class Driver {
             System.out.println("Gender: " + result.getString("gender") + ", sum: " + result.getString("sum") + ", avg: " + result.getString("avg") + ", max: " + result.getString("max") + ", min: " + result.getString("min"));
         }
     }
+
+    public static void addUserData(){
+        System.out.println("Enter Employee Id: ");
+        Scanner scanner = new Scanner(System.in);
+        int id = scanner.nextInt();
+        System.out.println("Enter Name: ");
+        String name = scanner.next();
+        System.out.println("Enter Salary: ");
+        int salary = scanner.nextInt();
+        System.out.println("Enter Start Date: ");
+        String startDate = scanner.next();
+        System.out.println("Enter Gender: ");
+        String gender = scanner.next();
+        System.out.println("Enter Phonenumber: ");
+        String phone = scanner.next();
+        System.out.println("Enter Address: ");
+        String address = scanner.next();
+        System.out.println("Enter Department: ");
+        String dept = scanner.next();
+        try{
+            JDBC jdbc = new JDBC();
+            jdbc.getConnection();
+            jdbc.connection.setAutoCommit(false);
+            PreparedStatement statement = jdbc.connection.prepareStatement("insert into employee_payroll (id, name, salary, startDate, gender, phone, address, department) values (?,?,?,?,?,?,?,?)");
+            statement.setInt(1, id);
+            statement.setString(2, name);
+            statement.setInt(3, salary);
+            statement.setString(4, startDate);
+            statement.setString(5, gender);
+            statement.setString(6, phone);
+            statement.setString(7, address);
+            statement.setString(8, dept);
+            statement.executeUpdate();
+            int deductions = (int) (0.2 * salary);
+            int taxablePay = salary - deductions;
+            int tax = (int) (0.1 * taxablePay);
+            int netpay = salary - tax;
+            PreparedStatement statement2 = jdbc.connection.prepareStatement("insert into payroll_detail values (?,?,?,?,?,?)");
+            statement2.setInt(1, id);
+            statement2.setInt(2, salary);
+            statement2.setInt(3, deductions);
+            statement2.setInt(4, taxablePay);
+            statement2.setInt(5, tax);
+            statement2.setInt(6, netpay);
+            statement2.executeUpdate();
+            jdbc.connection.commit();
+            jdbc.connection.setAutoCommit(true);
+        }catch(SQLException err){
+            err.printStackTrace();
+        }
+    }
+
+    public static void deleteUserData(){
+        System.out.println("Enter Employee Id: ");
+        int id = new Scanner(System.in).nextInt();
+        try{
+            JDBC jdbc = new JDBC();
+            jdbc.getConnection();
+            jdbc.connection.setAutoCommit(false);
+            PreparedStatement statement = jdbc.connection.prepareStatement("delete from employee_payroll where id = ?");
+            statement.setInt(1, id);
+            statement.executeUpdate();
+            PreparedStatement statement1 = jdbc.connection.prepareStatement("delete from payroll_detail where id = ?");
+            statement1.setInt(1, id);
+            statement1.executeUpdate();
+            jdbc.connection.commit();
+            jdbc.connection.setAutoCommit(true);
+        }
+        catch(SQLException err){
+            err.printStackTrace();
+        }
+
+    }
+
+
 
 }
